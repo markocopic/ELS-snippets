@@ -1,0 +1,60 @@
+
+ http://eps-els-t.eps.local:9200/cms_doc_1m/_search
+ 
+ {
+    
+    "query":{
+        "bool":{
+            "filter":[
+                {"range":{
+                    "date_filed":{
+                        "gte":"2020-11-06T09:08:41.000Z"}
+                        }
+                }
+                ,{"range":{
+                    "date_filed":{
+                        "lte":"2020-11-24T12:06:28.000Z"}
+                        }
+                }
+                 //,{ "term":  { "id_entity": 154596 }}
+            ],
+            "must":[
+                 { "match": { "draft": "N"}}
+                 ,{"match":{"id_case":5841719}}
+                // ,{ "match": { "id_book": 20600}}
+                // ,{ "match": { "created_by": 17590}}
+                // ,{ "match": { "id_reg_office": 157475}}
+                // {"exists": {
+                //     "field": "date_released"
+                // }},
+                
+                //,{"match_phrase": {"name_doc_search": {"query":"*атко роган*"}}}
+                // ,{"match_phrase_prefix" : {
+                //     "name_doc" : {
+                //     "query": "ратко роган"
+                //    // ,"slop": 10
+                //     }
+                //     }
+                //     }
+                //,{"query_string" : {"default_field" : "name_doc.keyword", "query" : "*и.ИВК-1132/13*"}}
+                // ,{"wildcard": {"name_doc_search.keyword": {"value": "*ључак иивк.11326#####2015*" }}}
+                //,{"wildcard": {"receiver_full_name.keyword": {"value": "*- СЕКТОР*" }}}
+
+                 ,{"wildcard": {"doc_number.keyword": {"value": "*48618/1*" }}}      //САП ХЦМ Организација: 402010000 - СЕКТОР
+                //,{"simple_query_string": {"fields": ["doc_number"], "query": "20600-E.07.02.-279318/2-2021"}}
+                 //,{"query_string" : {"default_field" : "doc_number.keyword", "query" : "*20600-E.10.09.-292719*1-2021*"}}
+                //,{"query_string" : {"default_field" : "name_doc_search.keyword", "query" : "ључак иивк.11326#####2015"}}
+                //,{"query_string" : {"default_field" : "name_doc", "query" : "*кључак AND ИИВК AND 1132*"}}
+                 //,{"query_string" : {"default_field" : "num_short.keyword", "query" : "*292713\\/1*"}}
+            ]
+            // ,"must_not": [{"exists": {"field": "date_released"}}]
+        }
+    }
+    ,
+    "from":0,
+    "size":10
+    ,"sort":[{"date_filed":"asc"}]
+}
+ 
+ 
+ 
